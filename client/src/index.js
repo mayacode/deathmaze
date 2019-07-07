@@ -1,14 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { string } from 'prop-types';
 
-function HelloMessage({ name }) {
-  return <div>Hello {name}</div>;
-}
-
-HelloMessage.propTypes = {
-  name: string,
-};
+import HelloMessage from './HelloMessage';
 
 ReactDOM.render(
   <HelloMessage name="Taylor" />,
