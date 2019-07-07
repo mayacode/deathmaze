@@ -4,9 +4,16 @@
   "description": "Browser version of Death Maze board game",
   "main": "index.js",
   "scripts": {
-    "client-dev": "webpack-dev-server -d --config ./client/webpack.dev.config.js",
     "client-build": "webpack --config ./client/webpack.dev.config.js",
-    "server-dev": "nodemon ./server/src/server.js --exec babel-node --inspect"
+    "client-dev": "webpack-dev-server -d --config ./client/webpack.dev.config.js",
+    "client-lint": "eslint --fix client/src",
+    "format": "npm run prettier -- --write",
+    "lint": "npm run client-lint && npm run server-lint",
+    "precommit": "lint-staged",
+    "prettier": "prettier \"**/*.+(js|json)\"",
+    "server-dev": "npm run client-build && nodemon ./server/src/server.js --exec babel-node --inspect",
+    "server-lint": "eslint --fix server/src",
+    "validate": "npm run lint && npm run prettier -- --list-different"
   },
   "repository": {
     "type": "git",
@@ -31,9 +38,17 @@
     "@babel/node": "^7.5.0",
     "@babel/preset-env": "^7.5.0",
     "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^10.0.2",
     "babel-loader": "^8.0.6",
+    "eslint": "^6.0.1",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-react": "^7.14.2",
     "html-webpack-plugin": "^3.2.0",
+    "husky": "^3.0.0",
+    "lint-staged": "^9.1.0",
     "nodemon": "^1.19.1",
+    "prettier": "^1.18.2",
+    "prop-types": "^15.7.2",
     "webpack": "^4.35.2",
     "webpack-cli": "^3.3.5",
     "webpack-dev-server": "^3.7.2"
@@ -42,5 +57,10 @@
     "express": "^4.17.1",
     "react": "^16.9.0-alpha.0",
     "react-dom": "^16.9.0-alpha.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run precommit"
+    }
   }
 }
