@@ -3,7 +3,7 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  devtool: '#inline-source-map',
+  devtool: 'inline-source-map',
   entry: [path.resolve(__dirname, 'src/index.js')],
   output: {
     path: path.resolve(__dirname, '../dist/client'),
@@ -23,6 +23,8 @@ module.exports = {
     contentBase: path.resolve(__dirname, '../dist/client'),
     watchContentBase: true,
     compress: true,
+    historyApiFallback: true,
+    port: 8081,
   },
   plugins: [
     new HTMLWebpackPlugin({

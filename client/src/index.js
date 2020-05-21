@@ -1,11 +1,15 @@
-import './wdyr';
+const whyDidYouRender = require('@welldone-software/why-did-you-render');
+whyDidYouRender(React, {
+  trackAllPureComponents: true,
+  trackHooks: true,
+});
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import HelloMessage from './HelloMessage';
+import App from './components/App/App';
 
 ReactDOM.render(
-  <HelloMessage name="Taylor" />,
+  <App />,
   document.getElementById('deathmaze-app'),
 );
